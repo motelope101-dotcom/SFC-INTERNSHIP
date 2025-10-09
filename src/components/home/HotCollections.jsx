@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg"; // fallback
-import nftImage from "../../images/nftImage.jpg"; // fallback
+import Slider from "react-slick";
+import AuthorImage from "../../images/author_thumbnail.jpg";
+import nftImage from "../../images/nftImage.jpg";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -16,19 +19,30 @@ const HotCollections = () => {
       .catch(err => console.error("API fetch error:", err));
   }, []);
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 1 } },
+    ],
+  };
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <div className="text-center">
-              <h2>Hot Collections</h2>
-              <div className="small-border bg-color-2"></div>
-            </div>
-          </div>
+        <div className="text-center">
+          <h2>Hot Collections</h2>
+          <div className="small-border bg-color-2"></div>
+        </div>
 
+        <Slider {...settings}>
           {collections.map((item, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+            <div key={index}>
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
@@ -58,7 +72,7 @@ const HotCollections = () => {
               </div>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </section>
   );
