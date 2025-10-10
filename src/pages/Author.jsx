@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import '../styles/styles.css';
+import '../css/styles/style.css';
 
 const Author = () => {
   const { id } = useParams();
