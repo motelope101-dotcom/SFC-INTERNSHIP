@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
@@ -15,8 +16,12 @@ const HotCollections = () => {
       .then(data => {
         console.log("Fetched Collections:", data);
         setCollections(data);
+        setLoading(false);
       })
-      .catch(err => console.error("API fetch error:", err));
+      .catch(err => {
+        console.error("API fetch error:", err);
+        setLoading(false);
+      });
   }, []);
 
   const settings = {
@@ -32,6 +37,24 @@ const HotCollections = () => {
     ],
   };
 
+  const renderSkeletons = () =>
+    new Array(4).fill(0).map((_, index) => (
+      <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+        <div className="nft_coll skeleton">
+          <div className="nft_wrap">
+            <div className="lazy img-fluid skeleton-box" style={{ height: "200px", background: "#ccc" }} />
+          </div>
+          <div className="nft_coll_pp">
+            <div className="lazy pp-coll skeleton-circle" style={{ width: "50px", height: "50px", borderRadius: "50%", background: "#ddd" }} />
+          </div>
+          <div className="nft_coll_info">
+            <h4 style={{ background: "#eee", height: "20px", width: "80%", marginBottom: "10px" }} />
+            <span style={{ background: "#eee", height: "15px", width: "60%" }} />
+          </div>
+        </div>
+      </div>
+    ));
+
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -40,39 +63,43 @@ const HotCollections = () => {
           <div className="small-border bg-color-2"></div>
         </div>
 
-        <Slider {...settings}>
-          {collections.map((item, index) => (
-            <div key={index}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img
-                      src={item.nftImage || nftImage}
-                      className="lazy img-fluid"
-                      alt={item.title}
-                    />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img
-                      className="lazy pp-coll"
-                      src={item.authorImage || AuthorImage}
-                      alt={item.author}
-                    />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{item.title}</h4>
-                  </Link>
-                  <span>{item.code || "ERC-192"}</span>
+        {loading ? (
+          <div className="row">{renderSkeletons()}</div>
+        ) : (
+          <Slider {...settings}>
+            {collections.map((item, index) => (
+              <div key={index}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Link to="/item-details">
+                      <img
+                        src={item.nftImage || nftImage}
+                        className="lazy img-fluid"
+                        alt={item.title}
+                      />
+                    </Link>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <img
+                        className="lazy pp-coll"
+                        src={item.authorImage || AuthorImage}
+                        alt={item.author}
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{item.title}</h4>
+                    </Link>
+                    <span>{item.code || "ERC-192"}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        )}
       </div>
     </section>
   );
