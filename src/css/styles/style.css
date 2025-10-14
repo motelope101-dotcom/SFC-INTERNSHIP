@@ -16706,6 +16706,18 @@ img {
   margin-bottom: 24px;
 }
 
+.filter-box {
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+.filter-box select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
 .connect-wallet {
   margin-left: 18px;
   color: white !important;
