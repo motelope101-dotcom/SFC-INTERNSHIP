@@ -15132,6 +15132,121 @@ a.btn-slider:hover {
   display: none;
 }
 
+/* === Swiper Styles for NewItems Section === */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #6c63ff;
+}
+
+.swiper-slide {
+  padding: 10px;
+}
+
+/*pagination dots */
+.swiper-pagination-bullet {
+  background: #6c63ff;
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* Skeleton loader styling */
+.nft_item.skeleton {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* Countdown */
+.countdown {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #6c63ff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+
+/* === Countdown Badge for Explore Cards === */
+.countdown {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #6c63ff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+/* === Load More Button === */
+.btn-primary {
+  background-color: #6c63ff;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #584ed2;
+}
+
+/* === Skeleton Loader === */
+.nft_item.skeleton {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.skeleton-img {
+  height: 200px;
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.skeleton-line {
+  background: #eee;
+  margin: 10px auto;
+  border-radius: 5px;
+}
+
+.skeleton-line.short {
+  height: 20px;
+  width: 80%;
+}
+
+.skeleton-line.thinner {
+  height: 15px;
+  width: 60%;
+  margin-top: 5px;
+}
+
+/* === Hover Effect on Cards === */
+.nft_item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+}
+
+/* === Responsive Countdown Badge === */
+@media (max-width: 576px) {
+  .countdown {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+}
+
+
+
 /* Control Nav */
 
 .testi-slider .flex-control-nav {

@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const NewItems = () => {
   const [items, setItems] = useState([]);
@@ -26,13 +31,13 @@ const NewItems = () => {
 
   const renderSkeletons = (count) =>
     new Array(count).fill(0).map((_, index) => (
-      <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={index}>
+      <SwiperSlide key={index}>
         <div className="nft_item skeleton">
-          <div style={{ height: "200px", background: "#ccc", borderRadius: "10px" }} />
-          <div style={{ height: "20px", width: "80%", background: "#eee", margin: "10px auto" }} />
-          <div style={{ height: "15px", width: "60%", background: "#eee", margin: "5px auto" }} />
+          <div className="skeleton-img" />
+          <div className="skeleton-line short" />
+          <div className="skeleton-line thinner" />
         </div>
-      </div>
+      </SwiperSlide>
     ));
 
   const formatCountdown = (expiry) => {
@@ -50,17 +55,26 @@ const NewItems = () => {
       <div className="container">
         <div className="text-center mb-4">
           <h2>New Items</h2>
-          <p style={{ fontWeight: "bold", fontSize: "1.1rem", color: "#6c63ff" }}>
-             Fetch Time: {fetchTime} seconds
-          </p>
+          <p className="fetch-time">Fetch Time: {fetchTime} seconds</p>
           <div className="small-border bg-color-2"></div>
         </div>
 
-        <div className="row">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={1}
+          navigation
+          pagination={{ clickable: true }}
+          breakpoints={{
+            576: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            992: { slidesPerView: 4 },
+          }}
+        >
           {loading
             ? renderSkeletons(4)
-            : items.slice(0, 4).map((item, index) => (
-                <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={index}>
+            : items.map((item, index) => (
+                <SwiperSlide key={index}>
                   <div className="nft_item">
                     <div className="nft_image position-relative">
                       <Link to="/item-details">
@@ -68,20 +82,10 @@ const NewItems = () => {
                           src={item.nftImage}
                           alt={item.title}
                           className="img-fluid"
-                          style={{ borderRadius: "10px" }}
                         />
                       </Link>
                       {item.expiryDate && (
-                        <div className="countdown" style={{
-                          position: "absolute",
-                          top: "10px",
-                          left: "10px",
-                          background: "#6c63ff",
-                          color: "#fff",
-                          padding: "5px 10px",
-                          borderRadius: "20px",
-                          fontSize: "0.8rem"
-                        }}>
+                        <div className="countdown">
                           {formatCountdown(item.expiryDate)}
                         </div>
                       )}
@@ -89,56 +93,12 @@ const NewItems = () => {
                     <div className="nft_info text-center mt-3">
                       <h4>{item.title}</h4>
                       <span>{item.price ? `${item.price} ETH` : "Price not listed"}</span>
-                      <div style={{ color: "#999", fontSize: "0.9rem" }}>
-                         {item.likes || 0}
-                      </div>
+                      <div className="likes">{item.likes || 0}</div>
                     </div>
                   </div>
-                </div>
+                </SwiperSlide>
               ))}
-        </div>
-
-        <div className="row">
-          {loading
-            ? renderSkeletons(3)
-            : items.slice(4, 7).map((item, index) => (
-                <div className="col-lg-4 col-md-6 mb-4" key={index}>
-                  <div className="nft_item">
-                    <div className="nft_image position-relative">
-                      <Link to="/item-details">
-                        <img
-                          src={item.nftImage}
-                          alt={item.title}
-                          className="img-fluid"
-                          style={{ borderRadius: "10px" }}
-                        />
-                      </Link>
-                      {item.expiryDate && (
-                        <div className="countdown" style={{
-                          position: "absolute",
-                          top: "10px",
-                          left: "10px",
-                          background: "#6c63ff",
-                          color: "#fff",
-                          padding: "5px 10px",
-                          borderRadius: "20px",
-                          fontSize: "0.8rem"
-                        }}>
-                          {formatCountdown(item.expiryDate)}
-                        </div>
-                      )}
-                    </div>
-                    <div className="nft_info text-center mt-3">
-                      <h4>{item.title}</h4>
-                      <span>{item.price ? `${item.price} ETH` : "Price not listed"}</span>
-                      <div style={{ color: "#999", fontSize: "0.9rem" }}>
-                         {item.likes || 0}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-        </div>
+        </Swiper>
       </div>
     </section>
   );

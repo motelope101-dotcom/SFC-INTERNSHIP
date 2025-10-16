@@ -19,16 +19,17 @@ const ExploreItems = () => {
             value={selectedFilter}
             onChange={(e) => setSelectedFilter(e.target.value)}
           >
-            <option value=""> Default</option>
-            <option value="likes_high_to_low">   Most Liked</option>
-            <option value="price_low_to_high">   Price: Low to High</option>
-            <option value="price_high_to_low">   Price: High to Low</option>
+            <option value="">Default</option>
+            <option value="likes_high_to_low">Most Liked</option>
+            <option value="price_low_to_high">Price: Low to High</option>
+            <option value="price_high_to_low">Price: High to Low</option>
           </select>
         </div>
 
         <div className="small-border bg-color-2 mt-4"></div>
       </div>
 
+      {/* Explore component handles countdown + load more */}
       <Explore filter={selectedFilter} />
     </div>
   );

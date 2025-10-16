@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Explore = ({ filter }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(8); // Initial number of cards
 
   useEffect(() => {
     let url = "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
@@ -23,6 +24,18 @@ const Explore = ({ filter }) => {
       });
   }, [filter]);
 
+  // countdown timer
+  const formatCountdown = (expiry) => {
+    const now = new Date();
+    const end = new Date(expiry);
+    const diff = Math.max(0, end - now);
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    return `${hours}h ${minutes}m ${seconds}s`;
+  };
+
+  // Skeleton loader
   const renderSkeletons = () =>
     new Array(8).fill(0).map((_, index) => (
       <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={index}>
@@ -34,17 +47,22 @@ const Explore = ({ filter }) => {
       </div>
     ));
 
+  // Load more handler
+  const handleLoadMore = () => {
+    setVisibleCount(prev => prev + 8);
+  };
+
   return (
     <section className="no-bottom">
       <div className="container">
         <div className="row">
           {loading
             ? renderSkeletons()
-            : items.map((item, index) => (
+            : items.slice(0, visibleCount).map((item, index) => (
                 <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={index}>
                   <div className="nft_item">
                     <div className="nft_image position-relative">
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${item.id}`}>
                         <img
                           src={item.nftImage}
                           alt={item.title}
@@ -52,12 +70,17 @@ const Explore = ({ filter }) => {
                           style={{ borderRadius: "10px" }}
                         />
                       </Link>
+                      {item.expiryDate && (
+                        <div className="countdown">
+                          {formatCountdown(item.expiryDate)}
+                        </div>
+                      )}
                     </div>
                     <div className="nft_info text-center mt-3">
                       <h4>{item.title}</h4>
                       <span>{item.price ? `${item.price} ETH` : "Price not listed"}</span>
                       <div style={{ color: "#999", fontSize: "0.9rem" }}>
-                         {item.likes || 0}
+                        {item.likes || 0}
                       </div>
                       <div className="author mt-2 d-flex align-items-center justify-content-center">
                         <Link to={`/author/${item.authorId}`} className="d-flex align-items-center">
@@ -75,6 +98,15 @@ const Explore = ({ filter }) => {
                 </div>
               ))}
         </div>
+
+        {/* Load More Button */}
+        {!loading && visibleCount < items.length && (
+          <div className="text-center mt-4">
+            <button className="btn btn-primary" onClick={handleLoadMore}>
+              Load More
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
