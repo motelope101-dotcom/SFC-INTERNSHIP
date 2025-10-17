@@ -42,14 +42,43 @@ const HotCollections = () => {
       <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
         <div className="nft_coll skeleton">
           <div className="nft_wrap">
-            <div className="lazy img-fluid skeleton-box" style={{ height: "200px", background: "#ccc" }} />
+            <div
+              className="lazy img-fluid skeleton-box"
+              style={{ height: "200px", background: "#ccc" }}
+            />
           </div>
           <div className="nft_coll_pp">
-            <div className="lazy pp-coll skeleton-circle" style={{ width: "50px", height: "50px", borderRadius: "50%", background: "#ddd" }} />
+            <div
+              className="lazy pp-coll skeleton-circle"
+              style={{
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                background: "#ddd",
+              }}
+            />
           </div>
           <div className="nft_coll_info">
-            <h4 style={{ background: "#eee", height: "20px", width: "80%", marginBottom: "10px" }} />
-            <span style={{ background: "#eee", height: "15px", width: "60%" }} />
+            <h4
+              style={{
+                background: "#eee",
+                height: "20px",
+                width: "80%",
+                marginBottom: "10px",
+              }}
+            >
+              <span style={{ opacity: 0 }}>Loading</span>
+            </h4>
+            <span
+              style={{
+                background: "#eee",
+                height: "15px",
+                width: "60%",
+                display: "inline-block",
+              }}
+            >
+              &nbsp;
+            </span>
           </div>
         </div>
       </div>
