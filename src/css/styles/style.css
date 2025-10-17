@@ -5171,24 +5171,27 @@ i.font60 {
 /* Slick Carousel Arrow Fix */
 .slick-prev,
 .slick-next {
-  z-index: 10;
-  visibility: visible;
-  opacity: 1;
-  color: #000; 
-  font-size: 24px;
+  background: rgba(0, 0, 0, 0.5); /* subtle dark backdrop */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.slick-prev {
-  left: -30px;
+.slick-prev:hover,
+.slick-next:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
-.slick-next {
-  right: -30px;
+.slick-prev:before,
+.slick-next:before {
+  color: white;
+  font-size: 20px;
 }
 
-.slick-disabled {
-  opacity: 0.3;
-}
 
 
 /* pricing table */

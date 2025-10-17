@@ -15,6 +15,10 @@ import Footer from "./components/Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// Slick carousel styles (Arrows)
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 function App() {
   useEffect(() => {
     AOS.init({
@@ -28,7 +32,7 @@ function App() {
     <Router>
       <Nav />
       <Routes>
-        {/* Home page with Swiper carousel */}
+        {/* Home page with HotCollections carousel */}
         <Route path="/" element={<Home />} />
 
         {/* Explore page */}
