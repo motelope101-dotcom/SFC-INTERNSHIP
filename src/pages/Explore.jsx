@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Countdown from "../components/CountDown.jsx"; // Dynamic countdown component
 
 const Explore = ({ filter }) => {
   const [items, setItems] = useState([]);
@@ -23,17 +24,6 @@ const Explore = ({ filter }) => {
         setLoading(false);
       });
   }, [filter]);
-
-  // countdown timer
-  const formatCountdown = (expiry) => {
-    const now = new Date();
-    const end = new Date(expiry);
-    const diff = Math.max(0, end - now);
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    return `${hours}h ${minutes}m ${seconds}s`;
-  };
 
   // Skeleton loader
   const renderSkeletons = () =>
@@ -71,9 +61,7 @@ const Explore = ({ filter }) => {
                         />
                       </Link>
                       {item.expiryDate && (
-                        <div className="countdown">
-                          {formatCountdown(item.expiryDate)}
-                        </div>
+                        <Countdown expiryDate={item.expiryDate} /> //  Live countdown
                       )}
                     </div>
                     <div className="nft_info text-center mt-3">

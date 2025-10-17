@@ -14,7 +14,6 @@ const HotCollections = () => {
     fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
       .then(res => res.json())
       .then(data => {
-        console.log("Fetched Collections:", data);
         setCollections(data);
         setLoading(false);
       })
@@ -26,6 +25,7 @@ const HotCollections = () => {
 
   const settings = {
     dots: true,
+    arrows: true, // Navigation arrows
     infinite: true,
     speed: 500,
     slidesToShow: 4,

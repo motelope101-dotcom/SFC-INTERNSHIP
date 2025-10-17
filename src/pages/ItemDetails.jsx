@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import EthImage from "../images/ethereum.svg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ItemDetails = () => {
   const { nftId } = useParams();
@@ -9,6 +11,7 @@ const ItemDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    AOS.init({ duration: 1000 });
 
     const fetchNft = async () => {
       try {
@@ -46,18 +49,17 @@ const ItemDetails = () => {
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
-        <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
             <div className="row">
-              <div className="col-md-6 text-center">
+              <div className="col-md-6 text-center" data-aos="fade-right">
                 <img
                   src={nft.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt={nft.title}
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6" data-aos="fade-left">
                 <div className="item_info">
                   <h2>{nft.title}</h2>
 

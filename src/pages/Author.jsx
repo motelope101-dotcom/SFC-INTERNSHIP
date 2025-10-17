@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import '../css/styles/style.css';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "../css/styles/style.css";
 
 const Author = () => {
   const { id } = useParams();
@@ -8,6 +10,9 @@ const Author = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    AOS.init({ duration: 1000 });
+
     const fetchAuthor = async () => {
       try {
         const res = await fetch(
@@ -16,7 +21,7 @@ const Author = () => {
         const data = await res.json();
         setAuthor(data);
       } catch (err) {
-        console.error('Error fetching author:', err);
+        console.error("Error fetching author:", err);
       } finally {
         setLoading(false);
       }
@@ -27,15 +32,28 @@ const Author = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(author.address);
-    alert('Wallet address copied!');
+    alert("Wallet address copied!");
   };
 
-  if (loading) return <div className="loading">Loading author...</div>;
-  if (!author) return <div className="error">Author not found.</div>;
+  if (loading) {
+    return (
+      <div className="container text-center mt-5">
+        <div className="skeleton-loader">Loading author profile...</div>
+      </div>
+    );
+  }
+
+  if (!author) {
+    return (
+      <div className="container text-center mt-5">
+        <p className="text-danger">Author not found.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="author-page">
-      <div className="author-profile">
+    <div className="author-page container">
+      <div className="author-profile" data-aos="fade-down">
         <img
           src={author.authorImage}
           alt={author.authorName}
@@ -50,13 +68,13 @@ const Author = () => {
         <p className="author-followers">{author.followers} followers</p>
       </div>
 
-      <div className="nft-gallery">
+      <div className="nft-gallery row mt-4" data-aos="fade-up">
         {author.nftCollection?.map((nft, index) => (
-          <div key={index} className="nft-card">
+          <div key={index} className="nft-card col-md-4 mb-4">
             <img src={nft.nftImage} alt={nft.title} className="nft-image" />
             <h3>{nft.title}</h3>
             <p>Price: {nft.price} ETH</p>
-            <p>Likes: ❤️ {nft.likes}</p>
+            <p>Likes: {nft.likes}</p>
           </div>
         ))}
       </div>

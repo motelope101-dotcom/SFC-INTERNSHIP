@@ -5168,6 +5168,29 @@ i.font60 {
   color: #ffffff;
 }
 
+/* Slick Carousel Arrow Fix */
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  visibility: visible;
+  opacity: 1;
+  color: #000; 
+  font-size: 24px;
+}
+
+.slick-prev {
+  left: -30px;
+}
+
+.slick-next {
+  right: -30px;
+}
+
+.slick-disabled {
+  opacity: 0.3;
+}
+
+
 /* pricing table */
 
 /* ================================================== */
