@@ -89,7 +89,7 @@ const HotCollections = () => {
     <section id="section-collections" className="no-bottom hot-collections-wrapper">
       <div className="container">
         <div className="text-center hot-collections-title">
-          <h2>🔥 Hot Collections</h2>
+          <h2>Hot Collections</h2>
           <div className="small-border bg-color-2"></div>
         </div>
 
