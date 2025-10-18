@@ -5,7 +5,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../../../css/styles/style.css";
+import "../../css/styles/style.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);

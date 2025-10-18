@@ -5178,7 +5178,7 @@ i.font60 {
   width: 100%;
   overflow: hidden;
   padding: 2rem 1rem;
-  background-color: #0a0a0a; /* Cinematic dark backdrop */
+  background-color: #f7f1f1; /* Cinematic */
 }
 
 .hot-collections-slider {
@@ -5196,14 +5196,13 @@ i.font60 {
 
 .collection-card {
   min-width: 250px;
-  background: #1a1a1a;
+  background: #ffffff; 
   border-radius: 12px;
   padding: 1rem;
-  color: #fff;
+  color: #000; 
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
-
 .collection-card:hover {
   transform: scale(1.05);
 }
@@ -5218,7 +5217,7 @@ i.font60 {
   width: 40px;
   height: 40px;
   background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: #969090;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -5228,7 +5227,7 @@ i.font60 {
 
 .hot-collections-slider .slick-prev:hover,
 .hot-collections-slider .slick-next:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(80, 69, 69, 0.932);
 }
 
 .hot-collections-slider .slick-prev {
@@ -5244,7 +5243,7 @@ i.font60 {
 
 .skeleton {
   animation: shimmer 1.5s infinite linear;
-  background: linear-gradient(to right, #1a1a1a 8%, #2a2a2a 18%, #1a1a1a 33%);
+  background: linear-gradient(to right, #c2baba 8%, #b6aeae 18%, #c0b5b5 33%);
   background-size: 1000px 100%;
 }
 
