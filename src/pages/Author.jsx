@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import "../css/styles/style.css";
 
 const Author = () => {
-  const { id } = useParams();
+  const { authorId } = useParams(); // ✅ FIXED
   const [author, setAuthor] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,7 @@ const Author = () => {
     const fetchAuthor = async () => {
       try {
         const res = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}` // ✅ FIXED
         );
         const data = await res.json();
         setAuthor(data);
@@ -28,7 +28,7 @@ const Author = () => {
     };
 
     fetchAuthor();
-  }, [id]);
+  }, [authorId]);
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(author.address);
