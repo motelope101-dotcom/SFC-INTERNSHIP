@@ -5,6 +5,7 @@ import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../../../css/styles/style.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -85,10 +86,10 @@ const HotCollections = () => {
     ));
 
   return (
-    <section id="section-collections" className="no-bottom">
+    <section id="section-collections" className="no-bottom hot-collections-wrapper">
       <div className="container">
-        <div className="text-center">
-          <h2>Hot Collections</h2>
+        <div className="text-center hot-collections-title">
+          <h2>🔥 Hot Collections</h2>
           <div className="small-border bg-color-2"></div>
         </div>
 
@@ -99,7 +100,7 @@ const HotCollections = () => {
             <Slider {...settings}>
               {collections.map((item, index) => (
                 <div key={index}>
-                  <div className="nft_coll">
+                  <div className="collection-card">
                     <div className="nft_wrap">
                       <Link to={`/item-details/${item.nftId}`}>
                         <img
