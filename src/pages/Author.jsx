@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "../css/styles/style.css";
 
 const Author = () => {
-  const { authorId } = useParams(); // ✅ FIXED
+  const { authorId } = useParams();
   const [author, setAuthor] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,7 @@ const Author = () => {
     const fetchAuthor = async () => {
       try {
         const res = await fetch(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}` // ✅ FIXED
+          `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
         );
         const data = await res.json();
         setAuthor(data);
@@ -71,8 +71,12 @@ const Author = () => {
       <div className="nft-gallery row mt-4" data-aos="fade-up">
         {author.nftCollection?.map((nft, index) => (
           <div key={index} className="nft-card col-md-4 mb-4">
-            <img src={nft.nftImage} alt={nft.title} className="nft-image" />
-            <h3>{nft.title}</h3>
+            <Link to={`/item-details/${nft.nftId}`}>
+              <img src={nft.nftImage} alt={nft.title} className="nft-image" />
+            </Link>
+            <Link to={`/item-details/${nft.nftId}`}>
+              <h3>{nft.title}</h3>
+            </Link>
             <p>Price: {nft.price} ETH</p>
             <p>Likes: {nft.likes}</p>
           </div>

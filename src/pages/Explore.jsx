@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Countdown from "../components/CountDown.jsx"; // Dynamic countdown component
+import Countdown from "../components/CountDown.jsx";
 
 const Explore = ({ filter }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(8); // Initial number of cards
+  const [visibleCount, setVisibleCount] = useState(8);
 
   useEffect(() => {
     let url = "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
@@ -25,7 +25,6 @@ const Explore = ({ filter }) => {
       });
   }, [filter]);
 
-  // Skeleton loader
   const renderSkeletons = () =>
     new Array(8).fill(0).map((_, index) => (
       <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={index}>
@@ -37,7 +36,6 @@ const Explore = ({ filter }) => {
       </div>
     ));
 
-  // Load more handler
   const handleLoadMore = () => {
     setVisibleCount(prev => prev + 8);
   };
@@ -61,7 +59,7 @@ const Explore = ({ filter }) => {
                         />
                       </Link>
                       {item.expiryDate && (
-                        <Countdown expiryDate={item.expiryDate} /> //  Live countdown
+                        <Countdown expiryDate={item.expiryDate} />
                       )}
                     </div>
                     <div className="nft_info text-center mt-3">
@@ -87,7 +85,6 @@ const Explore = ({ filter }) => {
               ))}
         </div>
 
-        {/* Load More Button */}
         {!loading && visibleCount < items.length && (
           <div className="text-center mt-4">
             <button className="btn btn-primary" onClick={handleLoadMore}>

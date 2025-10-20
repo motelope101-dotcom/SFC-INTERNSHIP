@@ -77,7 +77,7 @@ const NewItems = () => {
                 <SwiperSlide key={index}>
                   <div className="nft_item">
                     <div className="nft_image position-relative">
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${item.nftId}`}>
                         <img
                           src={item.nftImage}
                           alt={item.title}
