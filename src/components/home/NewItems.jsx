@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import Countdown from "../Countdown"; // Live countdown component
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -40,16 +41,6 @@ const NewItems = () => {
       </SwiperSlide>
     ));
 
-  const formatCountdown = (expiry) => {
-    const now = new Date();
-    const end = new Date(expiry);
-    const diff = Math.max(0, end - now);
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-    return `${hours}h ${minutes}m ${seconds}s`;
-  };
-
   return (
     <section id="section-new-items" className="no-bottom">
       <div className="container">
@@ -85,9 +76,7 @@ const NewItems = () => {
                         />
                       </Link>
                       {item.expiryDate && (
-                        <div className="countdown">
-                          {formatCountdown(item.expiryDate)}
-                        </div>
+                        <Countdown expiryDate={item.expiryDate} />
                       )}
                     </div>
                     <div className="nft_info text-center mt-3">
