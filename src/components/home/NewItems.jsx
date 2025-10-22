@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import Countdown from "../Countdown"; // Live countdown component
+import CountDown from "../CountDown"; // Live CountDown
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,15 +16,15 @@ const NewItems = () => {
     const startTime = performance.now();
 
     fetch("https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems")
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         const endTime = performance.now();
         setFetchTime(((endTime - startTime) / 1000).toFixed(2));
         setItems(data);
         setLoading(false);
         console.log("Fetched New Items:", data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error("API fetch error:", err);
         setLoading(false);
       });
@@ -76,12 +76,14 @@ const NewItems = () => {
                         />
                       </Link>
                       {item.expiryDate && (
-                        <Countdown expiryDate={item.expiryDate} />
+                        <CountDown expiryDate={item.expiryDate} />
                       )}
                     </div>
                     <div className="nft_info text-center mt-3">
                       <h4>{item.title}</h4>
-                      <span>{item.price ? `${item.price} ETH` : "Price not listed"}</span>
+                      <span>
+                        {item.price ? `${item.price} ETH` : "Price not listed"}
+                      </span>
                       <div className="likes">{item.likes || 0}</div>
                     </div>
                   </div>
