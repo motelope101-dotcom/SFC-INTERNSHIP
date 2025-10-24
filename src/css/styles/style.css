@@ -5178,12 +5178,14 @@ i.font60 {
   width: 100%;
   overflow: hidden;
   padding: 2rem 1rem;
-  background-color: #f7f1f1; /* Cinematic */
+  background-color: #f7f1f1; 
+  z-index: 1;
 }
 
 .hot-collections-slider {
   position: relative;
   padding: 2rem 0;
+  z-index: 1;
 }
 
 .hot-collections-title {
@@ -5196,13 +5198,15 @@ i.font60 {
 
 .collection-card {
   min-width: 250px;
-  background: #ffffff; 
+  background: #ffffff;
   border-radius: 12px;
   padding: 1rem;
-  color: #000; 
+  margin-bottom: 2rem; 
+  color: #000;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
+
 .collection-card:hover {
   transform: scale(1.05);
 }
@@ -5223,6 +5227,9 @@ i.font60 {
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
 }
 
 .hot-collections-slider .slick-prev:hover,
@@ -5231,15 +5238,15 @@ i.font60 {
 }
 
 .hot-collections-slider .slick-prev {
-  left: -50px;
+  left: 10px; 
 }
 
 .hot-collections-slider .slick-next {
-  right: -50px;
+  right: 10px;
 }
 
 
-/*HotCollections Skeleton Loader Styling === */
+/* === HotCollections Skeleton Loader Styling === */
 
 .skeleton {
   animation: shimmer 1.5s infinite linear;
@@ -5251,6 +5258,23 @@ i.font60 {
   0% { background-position: -1000px 0; }
   100% { background-position: 1000px 0; }
 }
+
+
+/* === Responsive Fixes === */
+
+@media (max-width: 576px) {
+  .hot-collections-slider .slick-prev,
+  .hot-collections-slider .slick-next {
+    top: auto;
+    bottom: 10px;
+    transform: none;
+  }
+
+  .collection-card {
+    margin-bottom: 3rem;
+  }
+}
+
 
 
 
@@ -16927,4 +16951,97 @@ img {
 
 .no-cursor {
   cursor: not-allowed;
+}
+
+
+
+
+
+/* === New Items Layout Fix: Uniform Card Sizes === */
+
+.nft_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 420px; /* consistent card height */
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 12px;
+}
+
+.nft_image {
+  height: 250px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.nft_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.nft_info {
+  margin-top: 1rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.nft_info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.nft_info span {
+  font-size: 14px;
+  color: #333;
+}
+
+.nft_info .likes {
+  font-size: 13px;
+  color: #888;
+  margin-top: 0.5rem;
+}
+
+.countdown-wrapper {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Skeleton Loader Consistency */
+.nft_item.skeleton {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nft_item {
+    min-height: 380px;
+  }
+
+  .nft_image {
+    height: 200px;
+  }
+}
+
+
+
+/* === Link Hover Enhancements for Explore Page === */
+
+.nft_image a:hover img,
+.author a:hover span {
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
 }
