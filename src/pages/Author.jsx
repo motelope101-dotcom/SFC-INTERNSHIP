@@ -53,32 +53,40 @@ const Author = () => {
 
   return (
     <div className="author-page container">
-      <div className="author-profile" data-aos="fade-down">
+      <div className="author-profile text-center" data-aos="fade-down">
         <img
           src={author.authorImage}
           alt={author.authorName}
           className="author-avatar"
         />
-        <h2>{author.authorName}</h2>
+        <h2>
+          {author.authorName}
+          {author.isVerified && (
+            <span className="verified-badge" title="Verified">✔️</span>
+          )}
+        </h2>
         <p className="author-tag">@{author.tag}</p>
         <div className="author-wallet">
           <span>{author.address.slice(0, 20)}...</span>
           <button onClick={copyToClipboard}>Copy</button>
         </div>
         <p className="author-followers">{author.followers} followers</p>
+        <button className="btn btn-primary follow-btn">Follow</button>
       </div>
 
       <div className="nft-gallery row mt-4" data-aos="fade-up">
         {author.nftCollection?.map((nft, index) => (
           <div key={index} className="nft-card col-md-4 mb-4">
-            <Link to={`/item-details/${nft.nftId}`}>
-              <img src={nft.nftImage} alt={nft.title} className="nft-image" />
+            <Link to={`/item-details/${nft.nftId}`} className="nft-link">
+              <div className="nft-image-wrapper">
+                <img src={nft.nftImage} alt={nft.title} className="nft-image" />
+                <div className="nft-overlay">
+                  <p>{nft.title}</p>
+                  <p>Price: {nft.price} ETH</p>
+                  <p>{nft.likes}</p>
+                </div>
+              </div>
             </Link>
-            <Link to={`/item-details/${nft.nftId}`}>
-              <h3>{nft.title}</h3>
-            </Link>
-            <p>Price: {nft.price} ETH</p>
-            <p>Likes: {nft.likes}</p>
           </div>
         ))}
       </div>

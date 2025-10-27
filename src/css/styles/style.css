@@ -17045,3 +17045,59 @@ img {
   cursor: pointer;
   transition: opacity 0.3s ease;
 }
+
+
+
+/* === Author Page Enhancements === */
+
+.author-profile {
+  margin-top: 40px;
+}
+
+.author-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.verified-badge {
+  margin-left: 8px;
+  color: #007bff;
+  font-size: 1.2rem;
+}
+
+.author-wallet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.follow-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+.nft-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.nft-overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  width: 100%;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nft-image-wrapper:hover .nft-overlay {
+  opacity: 1;
+}
