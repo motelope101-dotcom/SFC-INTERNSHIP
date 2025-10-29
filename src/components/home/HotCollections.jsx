@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/styles/style.css";
+
+const CustomPrevArrow = ({ onClick }) => (
+  <div className="slick-arrow slick-prev" onClick={onClick}>
+    <FaChevronLeft />
+  </div>
+);
+
+const CustomNextArrow = ({ onClick }) => (
+  <div className="slick-arrow slick-next" onClick={onClick}>
+    <FaChevronRight />
+  </div>
+);
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -31,6 +44,8 @@ const HotCollections = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 3 } },
       { breakpoint: 768, settings: { slidesToShow: 2 } },

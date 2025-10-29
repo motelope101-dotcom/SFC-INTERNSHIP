@@ -32,8 +32,19 @@ const ItemDetails = () => {
 
   if (loading) {
     return (
-      <div className="container text-center mt-5">
-        <div className="skeleton-loader">Loading NFT details...</div>
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-md-6 text-center">
+            <div className="skeleton-box mb-4" style={{ height: "300px", borderRadius: "12px" }} />
+          </div>
+          <div className="col-md-6">
+            <div className="skeleton-line mb-3" style={{ width: "60%", height: "25px" }} />
+            <div className="skeleton-line mb-2" style={{ width: "40%", height: "15px" }} />
+            <div className="skeleton-line mb-2" style={{ width: "80%", height: "15px" }} />
+            <div className="skeleton-line mb-2" style={{ width: "70%", height: "15px" }} />
+            <div className="skeleton-line mb-2" style={{ width: "50%", height: "15px" }} />
+          </div>
+        </div>
       </div>
     );
   }

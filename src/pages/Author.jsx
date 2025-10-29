@@ -38,7 +38,13 @@ const Author = () => {
   if (loading) {
     return (
       <div className="container text-center mt-5">
-        <div className="skeleton-loader">Loading author profile...</div>
+        <div className="author-skeleton">
+          <div className="skeleton-circle mb-3" style={{ width: "120px", height: "120px", borderRadius: "50%" }} />
+          <div className="skeleton-line mb-2" style={{ width: "40%", height: "20px" }} />
+          <div className="skeleton-line mb-2" style={{ width: "30%", height: "15px" }} />
+          <div className="skeleton-line mb-2" style={{ width: "50%", height: "15px" }} />
+          <div className="skeleton-line mb-2" style={{ width: "60%", height: "15px" }} />
+        </div>
       </div>
     );
   }
